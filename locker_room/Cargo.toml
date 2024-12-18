@@ -1,0 +1,9 @@
+[package]
+name = "locker_room"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.94"
+mongodb = "2.4"
+tokio = {version = "1", features = ["full"]}
