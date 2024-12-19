@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "scout"
+version = "0.1.0"
+description = ""
+authors = ["Clint Sullivan (vimgod) <clsulli95@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pymongo = "^4.10.1"
+nba-api = "^1.6.1"
+pandas = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+scout = "scout.main:main"
