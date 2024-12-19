@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   mongodb:
     image: mongo:latest
@@ -9,6 +7,11 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   locker_room:
     build:
@@ -16,7 +19,8 @@ services:
       dockerfile: Dockerfile
     container_name: locker_room
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
     environment:
       MONGODB_URI: "mongodb://admin:password@mongodb:27017"
     command: ["./locker_room"]
