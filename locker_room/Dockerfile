@@ -16,6 +16,10 @@ FROM debian:bookworm-slim
 
 WORKDIR /app
 
+ARG EXECUTABLE
+
 COPY --from=builder /app/target/release/locker_room .
 
-CMD ["./locker_room"]
+ENV EXECUTABLE=$EXECUTABLE
+
+CMD ["./$EXECUTABLE"]

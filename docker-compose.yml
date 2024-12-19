@@ -28,21 +28,25 @@ services:
         condition: service_healthy
 
   locker_room:
+    environment:
+      MONGODB_URI: "mongodb://admin:password@mongodb:27017"
     build:
       context: ./locker_room
       dockerfile: Dockerfile
+      args:
+        EXECUTABLE: locker_room
     container_name: locker_room
     depends_on:
       mongodb:
         condition: service_healthy
-    environment:
-      MONGODB_URI: "mongodb://admin:password@mongodb:27017"
     command: ["./locker_room"]
   
   general_manager:
     build:
       context: ./general_manager
       dockerfile: Dockerfile
+      args:
+        EXECUTABLE: general_manager
     container_name: general_manager
     depends_on:
       - locker_room
