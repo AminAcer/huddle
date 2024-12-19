@@ -20,3 +20,12 @@ services:
     environment:
       MONGODB_URI: "mongodb://admin:password@mongodb:27017"
     command: ["./locker_room"]
+  
+  general_manager:
+    build:
+      context: ./general_manager
+      dockerfile: Dockerfile
+    container_name: general_manager
+    depends_on:
+      - locker_room
+    command: ["./general_manager"]
